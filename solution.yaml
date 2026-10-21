@@ -1,0 +1,10 @@
+apiVersion: solution.sap/v1
+kind: Solution
+
+metadata:
+  name: hello-agent-2cda5
+  version: 1.0.0
+  description: A friendly greeting agent solution that responds with warm hello greetings.
+
+assets:
+  - ref: ./assets/hello-agent/asset.yaml

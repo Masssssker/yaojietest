@@ -1,0 +1,36 @@
+apiVersion: asset.sap/v1
+kind: Asset
+type: agent
+
+metadata:
+  name: hello-agent
+  description: A friendly greeting agent that says hello to users with a warm welcome message.
+  version: 1.0.0
+
+sourceRoot: "."
+
+container:
+  buildPath: .
+  port: 5000
+
+provides:
+  apis:
+    - name: hello-agent
+      kind: a2a
+      ordId: customer.build:apiResource:hello-agent-2cda5.hello-agent:v1
+      description: A2A endpoint for the Hello Agent greeting capability
+
+probes:
+  startup:
+    path: /.well-known/agent.json
+    initialDelaySeconds: 0
+    periodSeconds: 5
+    failureThreshold: 12
+  liveness:
+    path: /.well-known/agent.json
+    initialDelaySeconds: 15
+    periodSeconds: 10
+  readiness:
+    path: /.well-known/agent.json
+    initialDelaySeconds: 5
+    periodSeconds: 5
